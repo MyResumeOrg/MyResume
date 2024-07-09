@@ -2,18 +2,18 @@
     --primary-blue: #269fe6;
     --secondary-blue: #2d58b3;
     --primary-white: #f0ffff;
-    --primary-gray: #333333;
+    --primary-gray: #232323;
     --secondary-gray: #3b3b3b;
+    --primary-blue-filter: invert(53%) sepia(60%) saturate(3420%) hue-rotate(168deg) brightness(95%) contrast(101%);
+
+    --font-family1: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 body{
     height: 100%;
     margin: 0;
-    background-color: var(--secondary-gray);
-}
-
-.test {
-    height: 95%;
+    background-color: var(--primary-gray);
+    font-family: var(--font-family1);
 }
 
 footer {
@@ -22,19 +22,23 @@ footer {
 }
 
 .footer-content {
-    width: 75%;
+    width: 50%;
     display: flex;
-    background-color: var(--primary-gray);
+    background-color: var(--secondary-gray);
     color: var(--primary-white);
-    height: 5%;
+    height: 7vh;
     justify-content: space-between;
-    border-radius: 10px 10px 0 0;
-    padding-inline: 20px;
+    border-radius: 15px 15px 0 0;
+    padding-inline: 2rem;
+    box-shadow: 0 .5em 1.5em rgba(0, 0, 0, .1), 0 .125em .5em rgba(0, 0, 0, .15);
 }
 
 .social-medias {
     display: flex;
-    gap: 10px;
+    gap: 1rem;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
 }
 
 .social-medias a {
@@ -43,8 +47,19 @@ footer {
     align-items: center;
 }
 
-.social-medias a svg :hover {
+.social-medias a svg {
+    transition: 300ms ease-in-out;
+    height: 24px;
+    width: 24px;
+}
+
+.social-medias a:hover svg {
     fill: var(--primary-blue);
+}
+
+.copyright {
+    display: flex;
+    align-items: center;
 }
 
 .copyright p {

@@ -57,6 +57,11 @@ footer {
     fill: var(--primary-blue);
 }
 
+.copyright {
+    display: flex;
+    align-items: center;
+}
+
 .copyright p {
     transition: 300ms ease-in-out;
 }
