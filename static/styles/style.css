@@ -1,0 +1,56 @@
+:root{
+    --primary-blue: #269fe6;
+    --secondary-blue: #2d58b3;
+    --primary-white: #f0ffff;
+    --primary-gray: #333333;
+    --secondary-gray: #3b3b3b;
+}
+
+body{
+    height: 100%;
+    margin: 0;
+    background-color: var(--secondary-gray);
+}
+
+.test {
+    height: 95%;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+}
+
+.footer-content {
+    width: 75%;
+    display: flex;
+    background-color: var(--primary-gray);
+    color: var(--primary-white);
+    height: 5%;
+    justify-content: space-between;
+    border-radius: 10px 10px 0 0;
+    padding-inline: 20px;
+}
+
+.social-medias {
+    display: flex;
+    gap: 10px;
+}
+
+.social-medias a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-medias a svg :hover {
+    fill: var(--primary-blue);
+}
+
+.copyright p {
+    transition: 300ms ease-in-out;
+}
+
+.copyright p:hover {
+    color: var(--primary-blue);
+}
