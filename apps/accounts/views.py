@@ -5,9 +5,6 @@ from django.contrib import auth
 from apps.accounts.forms import LoginForms, RegisterForms
 from django.contrib import messages
 
-def footer(request):
-    return render(request, 'partials/footer.html')
-
 def login(request):
     form = LoginForms()
     return render(request, 'accounts/login.html', {'form': form})
