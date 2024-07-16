@@ -1,26 +1,35 @@
-{% extends "base.html" %}
 {% load static %}
-{% block content %}
-<div class="form-container">
-    <a href=""><img src="{% static 'assets/logos/logo_v2.svg' %}" alt=""></a>    
-    <form action="/login" method="POST">
-        {% csrf_token %}
-        <h1>Please sign in</h1>
-        {% for field in form.visible_fields %}
-            <!-- <label for="{{ field.id_for_label }}"></label> -->
-            {{ field }}
-        {% endfor %}
-        <div class="checkbox-container">
-            <input type="checkbox" id="remember-me" style="display: none;">
-            <label for="remember-me" class="check">
-                <svg width="18px" height="18px" viewBox="0 0 18 18">
-                    <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
-                    <polyline points="1 9 7 14 15 4"></polyline>
-                </svg>
-            </label>
-            <span>Remember me</span>
-        </div>
-        <button type="submit" id="submit-button">Sign in</button>
-    </form>
-</div>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="icon" href="{% static 'assets/logos/logo_v2.svg' %}" type="image/svg+xml">
+    <title>MyResume</title>
+</head>
+<body>    
+    <div class="form-container">
+        <a href="{% url 'home' %}"><img src="{% static 'assets/logos/logo_v2.svg' %}" alt=""></a>    
+        <form action="/login" method="POST">
+            {% csrf_token %}
+            <h1>Please sign in</h1>
+            {% for field in form.visible_fields %}
+                <!-- <label for="{{ field.id_for_label }}"></label> -->
+                {{ field }}
+            {% endfor %}
+            <div class="checkbox-container">
+                <input type="checkbox" id="remember-me" style="display: none;">
+                <label for="remember-me" class="check">
+                    <svg width="18px" height="18px" viewBox="0 0 18 18">
+                        <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
+                        <polyline points="1 9 7 14 15 4"></polyline>
+                    </svg>
+                </label>
+                <span>Remember me</span>
+            </div>
+            <button type="submit" id="submit-button">Sign in</button>
+        </form>
+    </div>
+</body>
+</html>
