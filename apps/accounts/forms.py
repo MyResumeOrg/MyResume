@@ -5,7 +5,7 @@ class LoginForms(forms.Form):
         label= 'E-mail',
         required= True,
         max_length= 200,
-        widget= forms.TextInput(
+        widget= forms.EmailInput(
             attrs={
                 'class':'form_input',
                 'placeholder':'E-mail'
@@ -78,10 +78,22 @@ class RegisterForms(forms.Form):
         label= 'Email',
         required= True,
         max_length= 200,
-        widget= forms.TextInput(
+        widget= forms.EmailInput(
             attrs= {
                 'class':'form_input',
                 'placeholder':'name@example.com'
+            }
+        )
+    )
+
+    email_confirmation = forms.EmailField(
+        label='Email confirmation',
+        required= True,
+        max_length= 200,
+        widget= forms.EmailInput(
+            attrs= {
+                'class':'form_input',
+                'placeholder':'Confirm your email'
             }
         )
     )
@@ -110,3 +122,33 @@ class RegisterForms(forms.Form):
         )
     )
 
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+
+        if username:
+            username = username.strip()
+            if ' ' in username:
+                print('nome vazio')
+                raise forms.ValidationError('It is not possible to contain spaces in the username.')
+        else:
+            return username
+        
+    def confirming_email(self):
+        register_email = self.cleaned_data.get('register_email')
+        email_confirmation = self.cleaned_data.get('email_confirmation')
+
+        if register_email and email_confirmation:
+            if register_email != email_confirmation:
+                raise forms.ValidationError('Email and email confirmation must be the same.')
+            else:
+                return register_email
+    
+    def confirming_password(self):
+        password = self.cleaned_data.get('password')
+        password_confirmation = self.cleaned_data.get('password_confirmation')
+
+        if password and password_confirmation:
+            if password != password_confirmation:
+                raise forms.ValidationError('Password and password confirmation must be the same.')
+            else:
+                return password
