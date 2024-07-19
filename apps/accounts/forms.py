@@ -23,7 +23,9 @@ class LoginForms(forms.Form):
                 'placeholder':'Password'
             }
         )
-    )
+    
+    )   
+
 
 class RegisterForms(forms.Form):
     first_name = forms.CharField(
