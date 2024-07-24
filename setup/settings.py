@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'apps.accounts.apps.AccountsConfig',
     'apps.core.apps.CoreConfig',
+    'apps.resumes.apps.ResumesConfig'
 ]
 
 MIDDLEWARE = [
