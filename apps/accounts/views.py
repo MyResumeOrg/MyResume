@@ -21,13 +21,13 @@ def login(request):
                 password= password
             )
 
-            if user is not None:
+            if user:
                 messages.success(request, 'Login completed successfully.')
                 auth.login(request, user)
                 return redirect('login')
-        else:
+            
             messages.error(request, 'Invalid email or password.')
-            return redirect('login')
+            return render(request, 'accounts/login.html', {'form': form})
     else:
         form = LoginForms()
         return render(request, 'accounts/login.html', {'form': form})
@@ -47,10 +47,10 @@ def register(request):
 
             if User.objects.filter(username=username).exists():
                 messages.error(request, 'Username already exists.')
-                return redirect('register')
+                return render(request, 'accounts/register.html', { 'form': form })
             if User.objects.filter(email=email).exists():
                 messages.error(request, 'Email already exists.')
-                return redirect('register')
+                return render(request, 'accounts/register.html', { 'form': form })
             
             user = User.objects.create_user(
                 username= username,
@@ -73,7 +73,7 @@ def register(request):
             return redirect('login')
         else:
             messages.error(request, 'Invalid form submission.')
-            return redirect('register')
+            return render(request, 'accounts/register.html', {'form': form})
     else:
         form = RegisterForms()
         return render(request, 'accounts/register.html', { 'form': form })
