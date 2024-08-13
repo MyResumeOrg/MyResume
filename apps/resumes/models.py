@@ -1,12 +1,32 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 from apps.accounts.models import CustomerUser
+# from apps.experiences.models import HardSkill, SoftSkill, Certification, ProfessionalExperience, AcademicExperience, RelevantProject, Recommendation,OpenSourceContribuition, Language
 
-class BI(models.Model):
-    customer = models.OneToOneField(CustomerUser, on_delete=models.SET_NULL, null=True)
-    linkedin_url = models.URLField(max_length=400, null=True)
-    github_url = models.URLField(max_length=400, null=True)
-    x_url = models.URLField(max_length=400, null=True)
-    city_of_residence = models.CharField(max_length=70, null=True)
-    areas_of_expertise = models.TextField(max_length=200, null=True)
-    professional_bio = models.TextField(max_length=600, null=True)
-    
+
+POSSIBLE_CHOICES = [
+    ('HardSkill', 'Hard Skills'),
+    ('SoftSkill', 'Soft Skills'),
+    ('Certification', 'Certifications'),
+    ('ProfessionalExperience', 'Professional experiences'),
+    ('AcademicExperience', 'Academic experiences'),
+    ('RelevantProject', 'Relevant projects'),
+    ('Recommendation', 'Recommendations'),
+    ('OpenSourceContribuition', 'Open source contribuitions'),
+    ('Language', 'Languages')
+]
+
+class Sequence(models.Model):
+    choice = models.CharField(max_length=50, choices=POSSIBLE_CHOICES, unique=True)
+
+class Resume(models.Model):
+    customer = models.ForeignKey(CustomerUser, on_delete=models.CASCADE)
+    sequences_of_informations = models.ManyToManyField(Sequence, blank=False, null=False)   
+
+    def clean(self):
+        if self.sequences_of_informations.count() == 0:
+            raise ValidationError('At least one choice must be selected.')
+        
+        sequences_of_informations_ids = list(self.sequences_of_informations.values_list('id', flat=True))
+        if len(sequences_of_informations_ids) != len(set(sequences_of_informations_ids)):
+            raise ValidationError('There are duplicate choices in the list.')

@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from apps.accounts.models import CustomerUser
 
 POSSIBLE_SKILL_TYPES = [
     ('LANGUAGE', 'Language'),
@@ -72,27 +73,25 @@ POSSIBLES_LANGUAGES = [
 ]
 
 class HardSkill(models.Model):
-    id_content = 1
-    skill = models.CharField(max_length=35, blank=False, null=False)
+    customer = models.ForeignKey(CustomerUser, on_delete=models.CASCADE)
+    skill = models.CharField(max_length=35)
     type_skill = models.CharField(
         max_length= 50,
         choices=POSSIBLE_SKILL_TYPES
     )
     self_avaliation = models.CharField(
         max_length= 50,
-        choices= SKILL_LEVEL,
-        null=False,
-        blank=False
+        choices= SKILL_LEVEL
     )
 
 class SoftSkill(models.Model):
-    id_content = 2
-    skill = models.CharField(max_length=35, blank=False, null=False)
+    customer = models.ForeignKey(CustomerUser, on_delete=models.CASCADE)
+    skill = models.CharField(max_length=35)
 
 
 class Certification(models.Model):
-    id_content = 3
-    instituition_name = models.CharField(max_length= 150, null=False, blank=False)
+    customer = models.ForeignKey(CustomerUser, on_delete=models.CASCADE)
+    instituition_name = models.CharField(max_length= 150)
     instituition_logo = models.FileField(
         upload_to='instituition_logos/',
         null=True, 
@@ -110,16 +109,16 @@ class Certification(models.Model):
     used_skills = models.ManyToManyField(HardSkill, blank= True)
 
 class ProfessionalExperience(models.Model):
-    id_content = 4
-    organization_name = models.CharField(max_length= 150, null=False)
+    customer = models.ForeignKey(CustomerUser, on_delete=models.CASCADE)
+    organization_name = models.CharField(max_length= 150)
     organization_logo = models.FileField(
         upload_to='organization_logos/', 
         null=True, 
         blank=True
     )
     organization_link = models.URLField()
-    responsibility = models.CharField(max_length= 70, null=False, blank=False)
-    used_skills = models.ManyToManyField(HardSkill, blank=True)
+    responsibility = models.CharField(max_length= 70)
+    used_skills = models.ManyToManyField(HardSkill)
     description = models.TextField(max_length= 500)
     start_date = models.DateField()
     end_date = models.DateField(blank= True, null=True)
@@ -129,7 +128,7 @@ class ProfessionalExperience(models.Model):
             raise ValidationError('An end date cannot be greater than a start date.') 
 
 class AcademicExperience(models.Model):
-    id_content = 5
+    customer = models.ForeignKey(CustomerUser, on_delete=models.CASCADE)
     organization_name = models.CharField(max_length=100,)
     organization_logo = models.FileField(
         upload_to='organization_logos/', 
@@ -148,7 +147,7 @@ class AcademicExperience(models.Model):
     end_date = models.DateField()
 
 class RelevantProject(models.Model):
-    id_content = 6
+    customer = models.ForeignKey(CustomerUser, on_delete=models.CASCADE)
     title = models.CharField(max_length= 35)
     project_logo = models.FileField(
         upload_to= 'project_logos/',
@@ -156,24 +155,24 @@ class RelevantProject(models.Model):
         blank= True
     )
     used_skills = models.ManyToManyField(HardSkill)
-    description = models.TextField(max_length= 500, null=False, blank=False)
+    description = models.TextField(max_length= 500)
     repository_link = models.URLField()
     project_link = models.URLField(null=True, blank=True)
 
 class Recommendation(models.Model):
-    id_content = 7
-    responsible = models.CharField(max_length= 70, blank=False, null=False)
+    customer = models.ForeignKey(CustomerUser, on_delete=models.CASCADE)
+    responsible = models.CharField(max_length= 70)
     responsible_foto = models.FileField(
         upload_to= 'responsible_fotos/',
         blank=True,
         null=True
     )
     responsible_linkedin = models.URLField()
-    recomendation_text = models.TextField(max_length= 700, blank=False, null=False)
+    recomendation_text = models.TextField(max_length= 700)
 
 class OpenSourceContribuition(models.Model):
-    id_content = 8
-    title = models.CharField(max_length= 50, blank=False, null=False)
+    customer = models.ForeignKey(CustomerUser, on_delete=models.CASCADE)
+    title = models.CharField(max_length= 50)
     project_logo = models.FileField(
         upload_to='project_logos/',
         null=True,
@@ -186,6 +185,6 @@ class OpenSourceContribuition(models.Model):
     solutions_commit_links = models.TextField()
 
 class Language(models.Model):
-    id_content = 9
+    customer = models.ForeignKey(CustomerUser, on_delete=models.CASCADE)
     language = models.CharField(max_length=50, choices= POSSIBLES_LANGUAGES)
     self_avaliation = models.CharField(max_length=50, choices= SKILL_LEVEL)
