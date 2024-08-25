@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from apps.experiences.forms import * 
 
-# Create your views here.
+def add_experiences(request):
+    form = HardSkillForm()
+    return render(request, 'experiences/test.html', {'form' : form})
