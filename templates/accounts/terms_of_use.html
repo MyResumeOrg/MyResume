@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="icon" href="{% static 'assets/logos/logo_v2.svg' %}" type="image/svg+xml">
+    <title>MyResume</title>
+</head>
+<body>
+    <div id="terms_of_use_container">
+        <a href="{% url 'register' %}"><img class="logo_link" src="{% static 'assets/logos/logo_v2.svg' %}" alt=""></a>    
+        <main id="terms_of_use_main">
+            <div id="terms_of_use_content">
+                <h1>Terms of Use</h1>
+                <p>Last updated: 09/18/2024</p>
+
+                <h2>1. Acceptance of Terms</h2>
+                <p>
+                    By using MyResume, you agree to comply with and be bound by the terms and conditions set forth in this document.
+                    These Terms of Use may be updated at any time, and updates will be posted on this page. We recommend that you periodically
+                    review this page to stay informed of any changes.
+                </p>
+
+                <h2>2. User Registration and Responsibilities</h2>
+                <p>
+                    To use some of our services, you may need to create an account. You agree to provide true, complete, and up-to-date information.
+                    You are responsible for maintaining the confidentiality of your password and for all activities that occur under your account.
+                </p>
+
+                <h2>3. Data Collection and Usage</h2>
+                <p>
+                    When using our services, you may provide personal information, such as your name, email address, professional experience,
+                    and other relevant data for creating resumes. We collect, store, and process this information in accordance with our
+                    <strong>Privacy Policy</strong>, with the aim of providing the requested services and improving our platform.
+                </p>
+
+                <h2>4. Privacy</h2>
+                <p>
+                    We respect your privacy and are committed to protecting your personal information. Our <strong>Privacy Policy</strong>
+                    details how we collect, use, and protect your data. By using our site, you agree to the terms of our privacy policy.
+                </p>
+
+                <h2>5. Permitted Use</h2>
+                <p>
+                    You agree to use MyResume solely for lawful purposes and in accordance with these Terms of Use. It is prohibited to:
+                </p>
+                <ul>
+                    <li>Use the site to submit false, misleading, or third-party infringing information.</li>
+                    <li>Collect or attempt to collect personal information from other users without their consent.</li>
+                    <li>Use the site in a way that could damage, disable, overburden, or impair our servers or networks.</li>
+                </ul>
+
+                <h2>6. Copyright and Intellectual Property</h2>
+                <p>
+                    All content available on MyResume, such as text, graphics, logos, icons, images, audio clips, and software,
+                    is the property of [Company Name] or its licensors and is protected by copyright and intellectual property laws.
+                </p>
+
+                <h2>7. Disclaimer of Warranties</h2>
+                <p>
+                    MyResume is provided "as is" and "as available" without any warranties, express or implied. We do not guarantee
+                    that the site will be available without interruption or error, nor that the results obtained from using our services
+                    will be accurate or reliable.
+                </p>
+
+                <h2>8. Limitation of Liability</h2>
+                <p>
+                    Under no circumstances shall MyResume or its owners be liable for any indirect, incidental, special, or consequential
+                    damages resulting from the use or inability to use the site.
+                </p>
+
+                <h2>9. Account Termination</h2>
+                <p>
+                    We may, at our sole discretion, suspend or terminate your account and access to the site, with or without prior notice,
+                    if we believe you have violated these Terms of Use.
+                </p>
+
+                <h2>10. Service Modifications</h2>
+                <p>
+                    We reserve the right to modify or discontinue, temporarily or permanently, the site (or any part of it) with or without notice.
+                </p>
+
+                <h2>11. Governing Law</h2>
+                <p>
+                    These Terms of Use shall be governed by and construed in accordance with the laws of [Country/State], without regard to its conflict
+                    of law provisions. You agree that any legal action arising out of your use of MyResume will be resolved in the courts of [City/State].
+                </p>
+
+                <h2>12. Contact</h2>
+                <p>
+                    If you have any questions or concerns regarding these Terms of Use, please contact us at: [email@domain.com].
+                </p>
+            </div>
+        </main>
+        <a href="{% url 'register' %}">
+            <button id="agree-button">I agree with terms of use</button>
+        </a>
+    </div>    
+</body>
+</html>

@@ -11,7 +11,7 @@
 <body>    
     <div class="form-container">
         {% include "partials/_messages.html" %}
-        <a href="{% url 'home' %}"><img src="{% static 'assets/logos/logo_v2.svg' %}" alt=""></a>    
+        <a href="{% url 'home' %}"><img class="logo_link" src="{% static 'assets/logos/logo_v2.svg' %}" alt=""></a>    
         <form action="/accounts/register/" method="POST">
             {% csrf_token %}
             <h1>Please sign up</h1>
@@ -27,7 +27,7 @@
                         <polyline points="1 9 7 14 15 4"></polyline>
                     </svg>
                 </label>
-                <span>I agree to the </span><a class="terms-link" href="">terms of use</a>
+                <span>I agree to the </span><a class="terms-link" href="{% url 'terms_of_use' %}">terms of use</a>
             </div>
             <button type="submit" id="submit-button">Sign up</button>
         </form>

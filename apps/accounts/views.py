@@ -6,6 +6,8 @@ from apps.accounts.forms import LoginForms, RegisterForms
 from django.contrib import messages
 from apps.accounts.models import CustomerUser
 
+def terms_of_use(request):
+    return render(request, 'accounts/terms_of_use.html')
 
 def login(request):
     if request.method == 'POST':

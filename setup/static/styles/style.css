@@ -19,12 +19,14 @@ html, body{
     background-color: var(--primary-gray);
     font-family: var(--font-family1);
     color: var(--primary-white);
+    overflow: auto;
+    scrollbar-width: none;
 }
 
 /* header */ 
 
 header {
-    width: 100vw;
+    width: 100%;
 }
 
 #header-content {
@@ -83,6 +85,18 @@ header {
 
 #sections-content ul a:hover {
     color: var(--primary-blue);
+}
+
+/* core */
+
+#main_sections_content {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+#sections_content {
+    width: 70%;
 }
 
 
@@ -203,7 +217,7 @@ footer {
     align-items: center;
 }
 
-.form-container a img {
+.logo_link {
     height: 5vh;
 }
 
@@ -426,3 +440,40 @@ form h1 {
     filter: blur(1.5px);
     transform: scale(0.95, 0.95);
   }
+
+/* terms of use */
+
+#terms_of_use_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+#terms_of_use_main {
+    width: 70%;
+    height: 70%;
+    overflow: auto;
+    margin: 1.5rem;
+    padding-inline: 1rem;
+    scrollbar-width: none;
+}
+
+#agree-button {
+    font-family: monospace;
+    background-color: var(--primary-white);
+    color: var(--primary-blue);
+    border: none;
+    border-radius: 8px;
+    width: auto;
+    height: 45px;
+    transition: .3s;
+}
+
+#agree-button:hover {
+    background-color: var(--primary-blue);
+    box-shadow: 0 0 0 5px #3b83f65f;
+    color: var(--primary-white);
+}
