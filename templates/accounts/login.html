@@ -11,7 +11,7 @@
 <body>    
     <div class="form-container">
         {% include "partials/_messages.html" %}
-        <a href="{% url 'home' %}"><img src="{% static 'assets/logos/logo_v2.svg' %}" alt=""></a>    
+        <a href="{% url 'home' %}"><img src="{% static 'assets/logos/logo_v2.svg' %}" class="logo_link" alt=""></a>    
         <form action="/accounts/login/" method="POST">
             {% csrf_token %}
             <h1>Please sign in</h1>
