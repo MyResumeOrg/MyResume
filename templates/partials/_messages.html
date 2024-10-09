@@ -1,5 +1,6 @@
 {% if messages %}
     {% for message in messages %}
+      <div class="message_div">
         <div class="alert-message alert-{{ message.tags }}">
             <div class="info_icon">
               <svg
@@ -17,5 +18,6 @@
             </div>
             <div class="message_title">{{ message }}</div>
           </div>          
+        </div>
     {% endfor %}
 {% endif %}

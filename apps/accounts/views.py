@@ -26,7 +26,7 @@ def login(request):
             if user:
                 messages.success(request, 'Login completed successfully.')
                 auth.login(request, user)
-                return redirect('login')
+                return redirect('add_experiences')
             
             messages.error(request, 'Invalid email or password.')
             return render(request, 'accounts/login.html', {'form': form})

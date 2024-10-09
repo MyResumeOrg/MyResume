@@ -102,6 +102,11 @@ header {
 
 /* messages */
 
+.message_div{
+    display: flex;
+    justify-content: center;
+}
+
 .alert-message {
     font-family: var(--font-famaly2);
     width: fit-content;
