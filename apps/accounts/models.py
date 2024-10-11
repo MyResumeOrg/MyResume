@@ -10,6 +10,7 @@ class BI(models.Model):
     professional_bio = models.TextField(max_length=600, null=True, blank=True)
 
 class CustomerUser(models.Model):
+    profile_image = models.ImageField(null=True, blank=True, upload_to='profile_images/')
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bi = models.OneToOneField(BI, on_delete=models.CASCADE, null=True, blank=True)
     birth_data = models.DateField()

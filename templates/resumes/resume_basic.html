@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="icon" href="{% static 'assets/logos/logo_v2.svg' %}" type="image/svg+xml">
+    <title>MyResume</title>
+</head>
+<body>
+    <main>
+        <div>
+            <img src="{{ customer_user.profile_image }}" alt="Profile image">
+            <h1>{{ user.first_name|add:" "|add:user.last_name }}</h1>
+            <h2>{{ bi.areas_of_expertise }}</h2>
+            <h3>{{ bi.city_of_residence }}</h3>
+            <p>{{ bi.professional_bio }}</p>
+            <div class="social_medias">
+                <a href="{{ bi.linkedin_url }}" target="_blank">Linkedin</a>
+                <a href="{{ bi.github_url }}" target="_blank">github</a>
+                <a href="{{ bi.x_url }}" target="_blank">X</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
