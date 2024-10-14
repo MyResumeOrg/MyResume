@@ -1,6 +1,13 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 from apps.accounts.models import CustomerUser
+from os.path import splitext
+
+def validate_image_file(value):
+    ext = splitext(value.name)[1].lower()
+    valid_extensions = ['.jpg', '.jpeg', '.png', '.svg', '.pdf']
+    if ext not in valid_extensions:
+        raise ValidationError(f'File type {ext} is not suported. Use {', '.join(valid_extensions)}')
 
 POSSIBLE_SKILL_TYPES = [
     ('LANGUAGE', 'Language'),
@@ -83,6 +90,13 @@ class HardSkill(models.Model):
         max_length= 50,
         choices= SKILL_LEVEL
     )
+    skill_image = models.FileField(
+        upload_to='tecnologies_logos/',
+        null=True,
+        blank=True,
+        validators=[validate_image_file]
+    )
+
 
 class SoftSkill(models.Model):
     customer = models.ForeignKey(CustomerUser, on_delete=models.CASCADE)
@@ -95,13 +109,16 @@ class Certification(models.Model):
     instituition_logo = models.FileField(
         upload_to='instituition_logos/',
         null=True, 
-        blank=True
+        blank=True,
+        validators=[validate_image_file]
     )
     instituition_link = models.URLField(null=True, blank=True)
     certificate_file = models.FileField(
         upload_to='certificate_files/',
         null=True,
-        blank=True
+        blank=True,
+        validators=[validate_image_file]
+
     )
     title = models.CharField(max_length= 100)
     estimated_hours = models.IntegerField()
@@ -114,7 +131,8 @@ class ProfessionalExperience(models.Model):
     organization_logo = models.FileField(
         upload_to='organization_logos/', 
         null=True, 
-        blank=True
+        blank=True,
+        validators=[validate_image_file]
     )
     organization_link = models.URLField()
     responsibility = models.CharField(max_length= 70)
@@ -133,13 +151,15 @@ class AcademicExperience(models.Model):
     organization_logo = models.FileField(
         upload_to='organization_logos/', 
         null=True,
-        blank= True
+        blank= True,
+        validators=[validate_image_file]
     )
     organization_link = models.URLField()
     certificate_file = models.FileField(
         upload_to= 'certificate_files/',
         null=True,
-        blank=True
+        blank=True,
+        validators=[validate_image_file]
     )
     title = models.CharField(max_length= 50)
     description = models.TextField()
@@ -152,7 +172,8 @@ class RelevantProject(models.Model):
     project_logo = models.FileField(
         upload_to= 'project_logos/',
         null= True,
-        blank= True
+        blank= True,
+        validators=[validate_image_file]
     )
     used_skills = models.ManyToManyField(HardSkill)
     description = models.TextField(max_length= 500)
@@ -165,7 +186,8 @@ class Recommendation(models.Model):
     responsible_foto = models.FileField(
         upload_to= 'responsible_fotos/',
         blank=True,
-        null=True
+        null=True,
+        validators=[validate_image_file]
     )
     responsible_linkedin = models.URLField()
     recomendation_text = models.TextField(max_length= 700)
@@ -176,7 +198,8 @@ class OpenSourceContribuition(models.Model):
     project_logo = models.FileField(
         upload_to='project_logos/',
         null=True,
-        blank=True
+        blank=True,
+        validators=[validate_image_file]
     )
     used_skills = models.ManyToManyField(HardSkill)
     description = models.TextField(max_length= 500)
