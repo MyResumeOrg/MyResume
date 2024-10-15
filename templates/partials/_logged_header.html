@@ -1,0 +1,23 @@
+{% load static %}
+<header>
+    <div id="header-content">
+        <div id="logo-content">
+            <a href="/"><img id="logo-header" src="{% static 'assets/logos/variated_logo.svg' %}" alt=""></a>
+        </div>
+        <div id="sections-content">
+            <ul>
+                <li><a href="">Add experiences</a></li>
+                <li><a href="">Basic</a></li>
+                <li><a href="">Complete</a></li>
+                <li><a href="">My experiences</a></li>
+            </ul>
+        </div>
+        <div id="log-content">
+            <a href="{% url 'profile_page' %}" class="profile_icon"><img src="{% static 'assets/icons/profile.svg' %}" alt="" class="profile_icon"></a>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="log-button">Log out</button>
+            </form>
+        </div>
+    </div>
+</header>
