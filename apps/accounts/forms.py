@@ -1,4 +1,7 @@
 from django import forms
+from apps.accounts.models import BI, CustomerUser
+from django.contrib.auth.models import User
+
 
 class LoginForms(forms.Form):
     login_email = forms.EmailField(
@@ -150,3 +153,55 @@ class RegisterForms(forms.Form):
                 raise forms.ValidationError('Password and password confirmation must be the same.')
 
         return cleaned_data
+
+class UserForm(forms.ModelForm):
+    
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')
+        
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'form_input blur_input'}),
+            'last_name': forms.TextInput(attrs={'class': 'form_input blur_input'}),
+            'email': forms.EmailInput(attrs={'class': 'form_input blur_input'}),
+        }
+        labels = {
+            'first_name': 'First name',
+            'last_name': 'Last name',
+            'email': 'Email'
+        }
+            
+class BIForm(forms.ModelForm):
+    
+    class Meta:
+        model = BI
+        fields = '__all__'
+        
+        widgets = {
+            'linkedin_url': forms.URLInput(attrs={'class': 'form_input blur_input'}),
+            'github_url': forms.URLInput(attrs={'class': 'form_input blur_input'}),
+            'x_url': forms.URLInput(attrs={'class': 'form_input blur_input'}),
+            'city_of_residence': forms.TextInput(attrs={'class' : 'form_input blur_input'}),
+            'areas_of_expertise': forms.TextInput(attrs={'class' : 'form_input blur_input'}),
+            'professional_bio': forms.Textarea(attrs={'class' : 'form_input blur_input'}),
+
+        }
+        labels = {
+            'linkedin_url': 'LinkedIn',
+            'github_url': 'GitHub',
+            'x_url': 'X (Twitter)',
+            'professional_bio': 'Professional biography'
+        }
+
+class CustomerUserForm(forms.ModelForm):
+    
+    class Meta:
+        model = CustomerUser
+        fields = ('profile_image',)
+
+        widgets = {
+            'profile_image': forms.FileInput(attrs={'class': 'file_input'}),
+        }
+        labels = {
+            'profile_image': 'Profile image',
+        }
