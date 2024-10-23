@@ -1,23 +1,53 @@
-{% extends "base.html" %}
+{% extends "global/base.html" %}
 {% block content %}
+{% include "partials/_logged_header.html" %}
 {% include "partials/_messages.html" %}
 <main class="add_experiences_main">
-    <nav>
-        <div class="input">
-          <h6>What do you want to add?</h6>
-          <ul>
-            <li><button>HardSkill</button></li>
-            <li><button>SoftSkill</button></li>
-          </ul>
-        </div>
+    <nav class="tab-container">
+      <input type="radio" name="tab" id="tab1" value="hard_skill" class="tab tab--1" checked/>
+      <label class="tab_label" for="tab1">Hard Skill</label>
+    
+      <input type="radio" name="tab" id="tab2" value="soft_skill" class="tab tab--2" />
+      <label class="tab_label" for="tab2">Soft Skill</label>
+    
+      <input type="radio" name="tab" id="tab3" class="tab tab--3" />
+      <label class="tab_label" for="tab3">Certification</label>
+    
+      <input type="radio" name="tab" id="tab4" class="tab tab--4" />
+      <label class="tab_label" for="tab4">Professional XP</label>
+
+      <input type="radio" name="tab" id="tab5" class="tab tab--5" />
+      <label class="tab_label" for="tab5">Academic XP</label>
+
+      <input type="radio" name="tab" id="tab6" class="tab tab--6" />
+      <label class="tab_label" for="tab6">Relevant project</label>
+
+      <input type="radio" name="tab" id="tab7" class="tab tab--7" />
+      <label class="tab_label" for="tab7">Recommendation</label>
+
+      <input type="radio" name="tab" id="tab8" class="tab tab--8" />
+      <label class="tab_label" for="tab8">Open Source Contrib</label>
+
+      <input type="radio" name="tab" id="tab9" class="tab tab--9" />
+      <label class="tab_label" for="tab9">Language</label>
+
+      <div class="indicator"></div>
     </nav>
-    <div class="form_content">
+    {% for form in forms %}
+    <div class="form_content none" id="{{ form.get_id_content }}">
         {{ form.get_title|safe }}
         <form action="/experiences/add_experiences/" method="POST">
             {% csrf_token %}
-            {{ form }}
-            <button type="submit" id="submit-button">Save experiences</button>
+            {% for input in form %}
+            <div class="form-group">
+              <label for="{{ input.id_for_label }}">{{ input.label }}</label>
+              {{ input }}
+            </div>
+            {% endfor %}
+            <button type="submit" name="submit_button" id="submit-button" value="{{ form.get_form_value }}">Save experiences</button>
         </form>
     </div>
+    {% endfor %}
 </main>
+{% include "partials/_footer.html" %}
 {% endblock  %}
