@@ -1,0 +1,99 @@
+{% extends "global/base.html" %}
+{% load static %}
+{% block content %}
+    {% include "partials/_logged_header.html" %}
+    {% include "partials/_messages.html" %}
+    <main class="main_profile">
+        <div class="profile-container">
+            <div class="profile-header">
+                {% if customer_user.profile_image %}
+                    <img src="{{ customer_user.profile_image.url }}" alt="Profile Picture" id="profile_image" draggable="false">
+                {% else %}
+                    <img src="{% static 'assets/icons/person-circle.svg' %}" alt="a" style="width: 10vh; height: 10vh;">
+                {% endif %}
+                <h1>{{ user.first_name|add:" "|add:user.last_name }}</h1>
+            </div>
+
+            <hr style="width: 90%; margin: 0; background-color: black; color: black; border-color: black;">
+    
+            <form method="post" action="{% url 'profile_page' %}" id="profile_page_form" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <h4>User Information</h4>
+                <div class="form-group">
+                    <label for="{{ user_form.first_name.id_for_label }}">{{ user_form.first_name.label }}</label>
+                    {{ user_form.first_name}}
+                </div>
+                <div class="form-group">
+                    <label for="{{ user_form.last_name.id_for_label }}">{{ user_form.last_name.label }}</label>
+                    {{ user_form.last_name}}
+                </div>
+                <div class="form-group">
+                    <label for="{{ user_form.email.id_for_label }}">{{ user_form.email.label }}</label>
+                    {{ user_form.email}}
+                </div>
+
+                <h4>Business Information</h4>
+                <div class="form-group">
+                    <label for="{{ bi_form.professional_bio.id_for_label }}">{{ bi_form.professional_bio.label }}</label>
+                    {{ bi_form.professional_bio}}
+                </div>
+                <div class="form-group">
+                    <label for="{{ bi_form.linkedin_url.id_for_label }}">{{ bi_form.linkedin_url.label }}</label>
+                    {{ bi_form.linkedin_url}}
+                </div>
+                <div class="form-group">
+                    <label for="{{ bi_form.github_url.id_for_label }}">{{ bi_form.github_url.label }}</label>
+                    {{ bi_form.github_url}}
+                </div>
+                <div class="form-group">
+                    <label for="{{ bi_form.x_url.id_for_label }}">{{ bi_form.x_url.label }}</label>
+                    {{ bi_form.x_url}}
+                </div>
+                <div class="form-group">
+                    <label for="{{ bi_form.areas_of_expertise.id_for_label }}">{{ bi_form.areas_of_expertise.label }}</label>
+                    {{ bi_form.areas_of_expertise}}
+                </div>
+                <div class="form-group">
+                    <label for="{{ bi_form.city_of_residence.id_for_label }}">{{ bi_form.city_of_residence.label }}</label>
+                    {{ bi_form.city_of_residence}}
+                </div>
+                <div class="form-group">
+                    <label for="{{ customer_form.profile_image.id_for_label }}">{{ customer_form.profile_image.label }}</label>
+                    {{ customer_form.profile_image }}
+                    <div class="button_file_content">
+                        <button id="button_add_file" type="button">
+                            <svg
+                            aria-hidden="true"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            >
+                            <path
+                                stroke-width="2"
+                                stroke="#fffffff"
+                                d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125"
+                                stroke-linejoin="round"
+                                stroke-linecap="round"
+                            ></path>
+                            <path
+                                stroke-linejoin="round"
+                                stroke-linecap="round"
+                                stroke-width="2"
+                                stroke="#fffffff"
+                                d="M17 15V18M17 21V18M17 18H14M17 18H20"
+                            ></path>
+                            </svg>
+                            Add file
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" id="submit-button">Update Profile</button>
+            </form>
+        </div>
+    </main>
+    {% include "partials/_footer.html" %}
+{% endblock content %}
