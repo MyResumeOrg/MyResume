@@ -1,6 +1,8 @@
-{% extends "base.html" %}
+{% extends "global/base.html" %}
 {% load static %}
 {% block content %}
+    {% include "partials/_header.html" %} 
+    {% include "partials/_messages.html" %}
     <main id= "main_sections_content">
         <div id="sections_content">
             <section id="introdution">
@@ -29,4 +31,5 @@
             </section>
         </div>
     </main>
+    {% include "partials/_footer.html" %}
 {% endblock %}
