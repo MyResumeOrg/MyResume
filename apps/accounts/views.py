@@ -69,14 +69,19 @@ def register(request):
                 password= password
             )
 
-            user.save()
+            # user.save()
 
+            bi_informations = BI.objects.create()
+            # bi_informations.save()
+            
             extended_user = CustomerUser.objects.create(
                 user= user,
                 birth_data= birth_data,
+                bi= bi_informations
             )
 
-            extended_user.save()
+            # extended_user.save()
+
 
             messages.success(request, 'Registration completed successfully.')
             return redirect('login')
