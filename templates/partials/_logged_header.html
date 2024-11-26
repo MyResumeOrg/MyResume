@@ -6,10 +6,10 @@
         </div>
         <div id="sections-content">
             <ul>
-                <li><a href="">Add experiences</a></li>
-                <li><a href="">Basic</a></li>
-                <li><a href="">Complete</a></li>
-                <li><a href="">My experiences</a></li>
+                <li><a href="{% url "add_experiences" %}">Add experiences</a></li>
+                <li><a href="{% url "basic" user%}">Basic</a></li>
+                <li><a href="{% url "complete" %}">Complete</a></li>
+                <li><a href="{% url "my_experiences" %}">My experiences</a></li>
             </ul>
         </div>
         <div id="log-content">
