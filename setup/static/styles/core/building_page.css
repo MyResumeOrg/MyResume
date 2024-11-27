@@ -1,0 +1,56 @@
+
+:root{
+    --primary-blue: #269fe6;
+    --secondary-blue: #2d58b3;
+    --primary-white: hsl(180, 100%, 97%);
+    --primary-gray: #232323;
+    --secondary-gray: #3b3b3b;
+    --terciary-gray: #a6a6a6;
+    --primary-blue-filter: invert(53%) sepia(60%) saturate(3420%) hue-rotate(168deg) brightness(95%) contrast(101%);
+
+    --font-family1: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-famaly2: monospace;
+}
+
+html, body{
+    height: 100%;
+    margin: 0;
+    background-image: linear-gradient(to right top, #232323, #292929, #2f2f2f, #353535, #3b3b3b);
+    font-family: var(--font-family1);
+    color: var(--primary-white);
+    overflow: auto;
+    scrollbar-width: none;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+}
+
+#home_link{
+    position: absolute;
+    margin-top: 1rem;
+}
+
+#home_logo{
+    width: 128px;
+}
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40vw;
+    flex-direction: column;
+}
+
+#building_page_title{
+    margin-top: 0px;
+    display: flex;
+    gap: 0.5rem;
+}
+
+#building_page_paragraph{
+    margin: 0;
+    text-align: justify;
+}
