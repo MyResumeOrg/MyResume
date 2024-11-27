@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/core/building_page.css' %}">
+    <link rel="icon" href="{% static 'assets/logos/logo_v2.svg' %}" type="image/svg+xml">
+    <title>MyResume</title>
+</head>
+<body>
+    {% if is_owner %}
+        <a href="{% url 'add_experiences' %}" id="home_link"><img src="{% static 'assets/logos/variated_logo.svg' %}" alt="MyResume logo" id="home_logo"></a>
+    {% else %}
+        <a href="{% url 'home' %}" id="home_link"><img src="{% static 'assets/logos/variated_logo.svg' %}" alt="MyResume logo" id="home_logo"></a>
+    {% endif %}
+    <main id="building_page_main">
+        <h1 id="building_page_title">Page Under Construction <img src="{% static "assets/icons/cone-striped.svg" %}" alt=""></h1>
+        <p id="building_page_paragraph">
+            We’re working hard behind the scenes to bring this page to life! 🚧 Stay tuned for exciting updates and new content coming your way soon.
+            In the meantime, feel free to explore the rest of our website or contact us if you have any questions.
+            Thank you for your patience and support! 🙌
+        </p>
+    </main>
+</body>
+</html>
+    
