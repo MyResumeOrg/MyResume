@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
+from django.apps import apps
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from apps.experiences.forms import * 
@@ -116,6 +117,31 @@ def add_experiences(request):
     return render(request, 'experiences/add_experiences.html', {'forms': [hardskill_form, softskill_form, certification_form, professional_experience_form, academic_experience_form, relevant_project_form, recomendation_form, open_source_contribuition_form, language_form]})
 
 
-# @login_required(login_url='/accounts/login/')
-# def add_experiences(request):
-#     pass
+@login_required(login_url='/accounts/login/')
+def my_experiences(request):
+    user = get_object_or_404(User, username=request.user.username)
+    customer_user = get_object_or_404(CustomerUser, user=user.id)
+
+    user_hard_skills = HardSkill.objects.filter(customer=customer_user.id)
+    user_soft_skills = SoftSkill.objects.filter(customer=customer_user.id)
+    user_certifications = Certification.objects.filter(customer=customer_user.id)
+    user_professional_experiences = ProfessionalExperience.objects.filter(customer=customer_user.id)
+    user_academic_experiences = AcademicExperience.objects.filter(customer=customer_user.id)
+    user_relevant_projects = RelevantProject.objects.filter(customer=customer_user.id)
+    user_recommendations = Recommendation.objects.filter(customer=customer_user.id)
+    user_open_source_contribuitions = OpenSourceContribuition.objects.filter(customer=customer_user.id)
+    user_languages = Language.objects.filter(customer=customer_user.id)
+    
+    return render(request, 'experiences/my_experiences.html', {'test' : user_hard_skills})
+
+
+@login_required(login_url='/accounts/login/')
+def delete_experiences(request, experience_id):
+    if request.method == 'POST':
+        Model = apps.get_model('experiences', request.POST.get('model_name'))
+        experience = get_object_or_404(Model, id=experience_id)
+        experience.delete()
+        
+        messages.success(request, 'Experience deleted successfully.')
+        return redirect('my_experiences')
+
