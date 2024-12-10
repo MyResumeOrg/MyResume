@@ -1,0 +1,294 @@
+{% extends "global/base.html" %}
+{% block content %}
+{% include "partials/_logged_header.html" %}
+{% include "partials/_messages.html" %}
+
+
+{% if hard_skills %}
+    <table>
+        <thead>
+            <caption>Hard Skills</caption>
+            <tr>
+                <th scope="col">Skill</th>
+                <th scope="col">Type Skill</th>
+                <th scope="col">Self Avaliation</th>
+            </tr>        
+        </thead>
+        <tbody>
+            {% for skill in hard_skills %}
+                <tr>
+                    <th scope="row">{{ skill.skill }}</th>
+                    <td>{{ skill.type_skill }}</td>
+                    <td>{{ skill.self_avaliation }}</td>
+                    <td>
+                        <form action="{% url 'delete_experiences' skill.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="model_name" value="HardSkill">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+
+{% if soft_skills %}
+    <table> 
+        <thead>
+            <caption>Soft Skills</caption>
+            <tr>
+                <th scope="col">Skill</th>
+            </tr>        
+        </thead>
+        <tbody>
+            {% for skill in soft_skills %}
+                <tr>
+                    <th scope="row">{{ skill.skill }}</th>
+                    <td>
+                        <form action="{% url 'delete_experiences' skill.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="model_name" value="SoftSkill">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+
+{% if certifications %}
+    <table>
+        <thead>
+            <caption>Certifications</caption>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Instituition name</th>
+                <th scope="col">Instituition link</th>
+                <th scope="col">Estimated hours</th>
+                <th scope="col">Description</th>
+            </tr>        
+        </thead>
+        <tbody>
+            {% for certification in certifications %}
+                <tr>
+                    <th scope="row">{{ certification.title }}</th>
+                    <td>{{ certification.instituition_name }}</td>
+                    <td>{{ certification.instituition_link }}</td>
+                    <td>{{ certification.estimated_hours }}</td>
+                    <td>{{ certification.descritpion }}</td>
+                    <td>
+                        <form action="{% url 'delete_experiences' certification.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="model_name" value="Certification">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+
+{% if professional_experiences %}
+    <table>
+        <thead>
+            <caption>Professional experiences</caption>
+            <tr>
+                <th scope="col">Responsability</th>
+                <th scope="col">Organization name</th>
+                <th scope="col">Organization link</th>
+                <th scope="col">Description</th>
+                <th scope="col">Start date</th>
+                <th scope="col">End date</th>
+            </tr>        
+        </thead>
+        <tbody>
+            {% for experience in professional_experiences %}
+                <tr>
+                    <th scope="row">{{ professional_experiences.responsability }}</th>
+                    <td>{{ professional_experiences.organization_name }}</td>
+                    <td>{{ professional_experiences.organization_name }}</td>
+                    <td>{{ professional_experiences.descritpion }}</td>
+                    <td>{{ professional_experiences.start_date }}</td>
+                    <td>{{ professional_experiences.end_date }}</td>
+                    <td>
+                        <form action="{% url 'delete_experiences' professional_experiences.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="model_name" value="ProfessionalExperience">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+
+{% if academic_experiences %}
+    <table>
+        <thead>
+            <caption>Academic experiences</caption>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Organization name</th>
+                <th scope="col">Organization link</th>
+                <th scope="col">Description</th>
+                <th scope="col">Start date</th>
+                <th scope="col">End date</th>
+            </tr>        
+        </thead>
+        <tbody>
+            {% for experience in academic_experiences %}
+                <tr>
+                    <th scope="row">{{ academic_experiences.title }}</th>
+                    <td>{{ academic_experiences.organization_name }}</td>
+                    <td>{{ academic_experiences.organization_name }}</td>
+                    <td>{{ academic_experiences.descritpion }}</td>
+                    <td>{{ academic_experiences.start_date }}</td>
+                    <td>{{ academic_experiences.end_date }}</td>
+                    <td>
+                        <form action="{% url 'delete_experiences' academic_experiences.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="model_name" value="AcademicExperience">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+
+{% if relevant_projects %}
+    <table>
+        <thead>
+            <caption>Relevant projects</caption>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Repository link</th>
+                <th scope="col">Project link</th>
+            </tr>        
+        </thead>
+        <tbody>
+            {% for project in relevant_projects %}
+                <tr>
+                    <th scope="row">{{ relevant_projects.title }}</th>            
+                    <td>{{ relevant_projects.descritpion }}</td>
+                    <td>{{ relevant_projects.repository_link }}</td>
+                    <td>{{ relevant_projects.project_link }}</td>
+                    <td>
+                        <form action="{% url 'delete_experiences' relevant_projects.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="model_name" value="RelevantProject">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+
+{% if recommendations %}
+    <table>
+        <thead>
+            <caption>Recommendations</caption>
+            <tr>
+                <th scope="col">Responsible</th>
+                <th scope="col">Responsible LinkedIn</th>
+                <th scope="col">Recommendation text</th>
+            </tr>        
+        </thead>
+        <tbody>
+            {% for recommendation in recommendations %}
+                <tr>
+                    <th scope="row">{{ recommendation.responsible }}</th>            
+                    <td>{{ recommendation.responsible_linkedin }}</td>
+                    <td>{{ recommendation.recommendation_text }}</td>
+                    <td>
+                        <form action="{% url 'delete_experiences' recommendation.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="model_name" value="Recommendation">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+
+{% if open_source_contribuitions %}
+    <table>
+        <thead>
+            <caption>Open Source contribuitions</caption>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Repository link</th>
+                <th scope="col">Project link</th>
+                <th scope="col">Solutions commit links</th>
+            </tr>        
+        </thead>
+        <tbody>
+            {% for contribuition in open_source_contribuitions %}
+                <tr>
+                    <th scope="row">{{ contribuition.title }}</th>            
+                    <td>{{ contribuition.description }}</td>
+                    <td>{{ contribuition.repository_link }}</td>
+                    <td>{{ contribuition.project_link }}</td>
+                    <td>{{ contribuition.solutions_commit_links }}</td>
+                    <td>
+                        <form action="{% url 'delete_experiences' contribuition.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="model_name" value="OpenSourceContribuition">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+
+{% if languages %}
+    <table>
+        <thead>
+            <caption>Languages</caption>
+            <tr>
+                <th scope="col">Language</th>
+                <th scope="col">Self avaliation</th>
+            </tr>        
+        </thead>
+        <tbody>
+            {% for language in languages %}
+                <tr>
+                    <th scope="row">{{ language.language }}</th>            
+                    <td>{{ language.self_avaliation }}</td>
+                    <td>
+                        <form action="{% url 'delete_experiences' language.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="model_name" value="Language">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+
+{% include "partials/_footer.html" %}
+{% endblock  %}
