@@ -97,6 +97,9 @@ class HardSkill(models.Model):
         validators=[validate_image_file]
     )
 
+    def __str__(self):
+        return self.skill
+
 
 class SoftSkill(models.Model):
     customer = models.ForeignKey(CustomerUser, on_delete=models.CASCADE)
