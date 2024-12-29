@@ -132,7 +132,17 @@ def my_experiences(request):
     user_open_source_contribuitions = OpenSourceContribuition.objects.filter(customer=customer_user.id)
     user_languages = Language.objects.filter(customer=customer_user.id)
     
-    return render(request, 'experiences/my_experiences.html', {'test' : user_hard_skills})
+    return render(request, 'experiences/my_experiences.html', {
+        'hard_skills' : user_hard_skills, 
+        'soft_skills' : user_soft_skills, 
+        'certifications' : user_certifications,
+        'professional_experiences' : user_professional_experiences,
+        'academic_experiences' : user_academic_experiences,
+        'relevant_projects' : user_relevant_projects,
+        'recommendations' : user_recommendations,
+        'open_source_contribuitions' : user_open_source_contribuitions,
+        'languages' : user_languages,
+    })
 
 
 @login_required(login_url='/accounts/login/')
