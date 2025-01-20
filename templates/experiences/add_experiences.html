@@ -2,37 +2,39 @@
 {% block content %}
 {% include "partials/_logged_header.html" %}
 {% include "partials/_messages.html" %}
+<div class="nav_content">
+  <nav class="tab-container">
+    <input type="radio" name="tab" id="tab1" value="hard_skill" class="tab tab--1" checked/>
+    <label class="tab_label" for="tab1">Hard Skill</label>
+
+    <input type="radio" name="tab" id="tab2" value="soft_skill" class="tab tab--2" />
+    <label class="tab_label" for="tab2">Soft Skill</label>
+
+    <input type="radio" name="tab" id="tab3" value="certification" class="tab tab--3" />
+    <label class="tab_label" for="tab3">Certification</label>
+
+    <input type="radio" name="tab" id="tab4" value="professional_experience" class="tab tab--4" />
+    <label class="tab_label" for="tab4">Professional XP</label>
+
+    <input type="radio" name="tab" id="tab5" value="academic_experience" class="tab tab--5" />
+    <label class="tab_label" for="tab5">Academic XP</label>
+
+    <input type="radio" name="tab" id="tab6" value="relevant_project" class="tab tab--6" />
+    <label class="tab_label" for="tab6">Relevant project</label>
+
+    <input type="radio" name="tab" id="tab7" value="recomendation" class="tab tab--7" />
+    <label class="tab_label" for="tab7">Recommendation</label>
+
+    <input type="radio" name="tab" id="tab8" value="open_source_contribuition" class="tab tab--8" />
+    <label class="tab_label" for="tab8">Open Source Contrib</label>
+
+    <input type="radio" name="tab" id="tab9" value="language" class="tab tab--9" />
+    <label class="tab_label" for="tab9">Language</label>
+
+    <div class="indicator"></div>
+  </nav>
+</div>
 <main class="add_experiences_main">
-    <nav class="tab-container">
-      <input type="radio" name="tab" id="tab1" value="hard_skill" class="tab tab--1" checked/>
-      <label class="tab_label" for="tab1">Hard Skill</label>
-    
-      <input type="radio" name="tab" id="tab2" value="soft_skill" class="tab tab--2" />
-      <label class="tab_label" for="tab2">Soft Skill</label>
-    
-      <input type="radio" name="tab" id="tab3" value="certification" class="tab tab--3" />
-      <label class="tab_label" for="tab3">Certification</label>
-    
-      <input type="radio" name="tab" id="tab4" value="professional_experience" class="tab tab--4" />
-      <label class="tab_label" for="tab4">Professional XP</label>
-
-      <input type="radio" name="tab" id="tab5" value="academic_experience" class="tab tab--5" />
-      <label class="tab_label" for="tab5">Academic XP</label>
-
-      <input type="radio" name="tab" id="tab6" value="relevant_project" class="tab tab--6" />
-      <label class="tab_label" for="tab6">Relevant project</label>
-
-      <input type="radio" name="tab" id="tab7" value="recomendation" class="tab tab--7" />
-      <label class="tab_label" for="tab7">Recommendation</label>
-
-      <input type="radio" name="tab" id="tab8" value="open_source_contribuition" class="tab tab--8" />
-      <label class="tab_label" for="tab8">Open Source Contrib</label>
-
-      <input type="radio" name="tab" id="tab9" value="language" class="tab tab--9" />
-      <label class="tab_label" for="tab9">Language</label>
-
-      <div class="indicator"></div>
-    </nav>
     {% for form in forms %}
     <div class="form_content none" id="{{ form.get_id_content }}">
         {{ form.get_title|safe }}

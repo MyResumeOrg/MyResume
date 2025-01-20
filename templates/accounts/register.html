@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'styles/style.css' %}">
     <link rel="icon" href="{% static 'assets/logos/logo_v2.svg' %}" type="image/svg+xml">
+    <script src="{% static 'js/register.js' %}" defer></script>
     <title>MyResume</title>
 </head>
 
@@ -33,10 +34,9 @@
                 </label>
                 <span>I agree to the </span><a class="terms-link" href="{% url 'terms_of_use' %}">terms of use</a>
             </div>
-            <button type="submit" id="submit-button">Sign up</button>
+            <button type="submit" id="submit-button" disabled>Sign up</button>
         </form>
     </div>
-    <script src="{% static 'js/register.js' %}"></script>
 </body>
 
 </html>

@@ -1,9 +1,10 @@
 {% extends "global/base.html" %}
+{% load static %}
 {% block content %}
 {% include "partials/_logged_header.html" %}
 {% include "partials/_messages.html" %}
 
-
+<div id="main_container">
 {% if hard_skills %}
     <table>
         <thead>
@@ -17,14 +18,14 @@
         <tbody>
             {% for skill in hard_skills %}
                 <tr>
-                    <th scope="row">{{ skill.skill }}</th>
+                    <td scope="row">{{ skill.skill }}</td>
                     <td>{{ skill.type_skill }}</td>
                     <td>{{ skill.self_avaliation }}</td>
                     <td>
                         <form action="{% url 'delete_experiences' skill.id %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="model_name" value="HardSkill">
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit"><img src="{% static 'assets/icons/trash-fill.svg' %}" alt="Trash icon"></button>
                         </form>
                     </td>
                 </tr>
@@ -45,12 +46,12 @@
         <tbody>
             {% for skill in soft_skills %}
                 <tr>
-                    <th scope="row">{{ skill.skill }}</th>
+                    <td scope="row">{{ skill.skill }}</td>
                     <td>
                         <form action="{% url 'delete_experiences' skill.id %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="model_name" value="SoftSkill">
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit"><img src="{% static 'assets/icons/trash-fill.svg' %}" alt="Trash icon"></button>                   
                         </form>
                     </td>
                 </tr>
@@ -75,7 +76,7 @@
         <tbody>
             {% for certification in certifications %}
                 <tr>
-                    <th scope="row">{{ certification.title }}</th>
+                    <td scope="row">{{ certification.title }}</td>
                     <td>{{ certification.instituition_name }}</td>
                     <td>{{ certification.instituition_link }}</td>
                     <td>{{ certification.estimated_hours }}</td>
@@ -84,7 +85,7 @@
                         <form action="{% url 'delete_experiences' certification.id %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="model_name" value="Certification">
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit"><img src="{% static 'assets/icons/trash-fill.svg' %}" alt="Trash icon"></button>
                         </form>
                     </td>
                 </tr>
@@ -110,17 +111,17 @@
         <tbody>
             {% for experience in professional_experiences %}
                 <tr>
-                    <th scope="row">{{ professional_experiences.responsability }}</th>
-                    <td>{{ professional_experiences.organization_name }}</td>
-                    <td>{{ professional_experiences.organization_name }}</td>
-                    <td>{{ professional_experiences.descritpion }}</td>
-                    <td>{{ professional_experiences.start_date }}</td>
-                    <td>{{ professional_experiences.end_date }}</td>
+                    <td scope="row">{{ experience.responsibility }}</td>
+                    <td>{{ experience.organization_name }}</td>
+                    <td>{{ experience.organization_name }}</td>
+                    <td>{{ experience.description }}</td>
+                    <td>{{ experience.start_date }}</td>
+                    <td>{{ experience.end_date }}</td>
                     <td>
-                        <form action="{% url 'delete_experiences' professional_experiences.id %}" method="post">
+                        <form action="{% url 'delete_experiences' experience.id %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="model_name" value="ProfessionalExperience">
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit"><img src="{% static 'assets/icons/trash-fill.svg' %}" alt="Trash icon"></button>
                         </form>
                     </td>
                 </tr>
@@ -146,17 +147,17 @@
         <tbody>
             {% for experience in academic_experiences %}
                 <tr>
-                    <th scope="row">{{ academic_experiences.title }}</th>
-                    <td>{{ academic_experiences.organization_name }}</td>
-                    <td>{{ academic_experiences.organization_name }}</td>
-                    <td>{{ academic_experiences.descritpion }}</td>
-                    <td>{{ academic_experiences.start_date }}</td>
-                    <td>{{ academic_experiences.end_date }}</td>
+                    <td scope="row">{{ experience.title }}</td>
+                    <td>{{ experience.organization_name }}</td>
+                    <td>{{ experience.organization_name }}</td>
+                    <td>{{ experience.description }}</td>
+                    <td>{{ experience.start_date }}</td>
+                    <td>{{ experience.end_date }}</td>
                     <td>
-                        <form action="{% url 'delete_experiences' academic_experiences.id %}" method="post">
+                        <form action="{% url 'delete_experiences' experience.id %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="model_name" value="AcademicExperience">
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit"><img src="{% static 'assets/icons/trash-fill.svg' %}" alt="Trash icon"></button>
                         </form>
                     </td>
                 </tr>
@@ -180,7 +181,7 @@
         <tbody>
             {% for project in relevant_projects %}
                 <tr>
-                    <th scope="row">{{ relevant_projects.title }}</th>            
+                    <td scope="row">{{ relevant_projects.title }}</td>            
                     <td>{{ relevant_projects.descritpion }}</td>
                     <td>{{ relevant_projects.repository_link }}</td>
                     <td>{{ relevant_projects.project_link }}</td>
@@ -188,7 +189,7 @@
                         <form action="{% url 'delete_experiences' relevant_projects.id %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="model_name" value="RelevantProject">
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit"><img src="{% static 'assets/icons/trash-fill.svg' %}" alt="Trash icon"></button>
                         </form>
                     </td>
                 </tr>
@@ -211,14 +212,14 @@
         <tbody>
             {% for recommendation in recommendations %}
                 <tr>
-                    <th scope="row">{{ recommendation.responsible }}</th>            
+                    <td scope="row">{{ recommendation.responsible }}</td>            
                     <td>{{ recommendation.responsible_linkedin }}</td>
                     <td>{{ recommendation.recommendation_text }}</td>
                     <td>
                         <form action="{% url 'delete_experiences' recommendation.id %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="model_name" value="Recommendation">
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit"><img src="{% static 'assets/icons/trash-fill.svg' %}" alt="Trash icon"></button>
                         </form>
                     </td>
                 </tr>
@@ -243,7 +244,7 @@
         <tbody>
             {% for contribuition in open_source_contribuitions %}
                 <tr>
-                    <th scope="row">{{ contribuition.title }}</th>            
+                    <td scope="row">{{ contribuition.title }}</td>            
                     <td>{{ contribuition.description }}</td>
                     <td>{{ contribuition.repository_link }}</td>
                     <td>{{ contribuition.project_link }}</td>
@@ -252,7 +253,7 @@
                         <form action="{% url 'delete_experiences' contribuition.id %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="model_name" value="OpenSourceContribuition">
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit"><img src="{% static 'assets/icons/trash-fill.svg' %}" alt="Trash icon"></button>
                         </form>
                     </td>
                 </tr>
@@ -274,13 +275,13 @@
         <tbody>
             {% for language in languages %}
                 <tr>
-                    <th scope="row">{{ language.language }}</th>            
+                    <td scope="row">{{ language.language }}</td>            
                     <td>{{ language.self_avaliation }}</td>
                     <td>
                         <form action="{% url 'delete_experiences' language.id %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="model_name" value="Language">
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit"><img src="{% static 'assets/icons/trash-fill.svg' %}" alt="Trash icon"></button>
                         </form>
                     </td>
                 </tr>
@@ -288,7 +289,7 @@
         </tbody>
     </table>
 {% endif %}
-
+</div>
 
 {% include "partials/_footer.html" %}
 {% endblock  %}
