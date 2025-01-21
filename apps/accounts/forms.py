@@ -1,6 +1,7 @@
 from django import forms
 from apps.accounts.models import BI, CustomerUser
 from django.contrib.auth.models import User
+from datetime import date
 
 
 class LoginForms(forms.Form):
@@ -136,6 +137,7 @@ class RegisterForms(forms.Form):
         email_confirmation = self.cleaned_data.get('email_confirmation')
         password = self.cleaned_data.get('password')
         password_confirmation = self.cleaned_data.get('password_confirmation')
+        birth_data = self.cleaned_data.get('birth_data')
 
         if username:
             username = username.strip()
@@ -143,6 +145,9 @@ class RegisterForms(forms.Form):
                 raise forms.ValidationError('It is not possible to contain spaces in the username.')
         else:
             return username
+        
+        if birth_data > date.today(): # Tested and approved
+            raise forms.ValidationError('Birth date cannot be in the future.')
 
         if register_email and email_confirmation:
             if register_email != email_confirmation:
