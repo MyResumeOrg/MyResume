@@ -18,7 +18,9 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.auth import views as auth_views
+from setup.views import CustomLogoutView
+# from django.contrib.auth import views as auth_views
+# from setup.mixins import LogoutMessageMixin
 
 
 urlpatterns = [
@@ -27,7 +29,7 @@ urlpatterns = [
     path('accounts/', include('apps.accounts.urls')),
     path('experiences/', include('apps.experiences.urls')),
     path('resumes/', include('apps.resumes.urls')),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout')
+    path('logout/', CustomLogoutView.as_view(), name='logout')
 ]
 
 if settings.DEBUG:
