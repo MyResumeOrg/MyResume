@@ -10,9 +10,19 @@ from apps.experiences.forms import *
 def add_experiences(request):
     user = get_object_or_404(User, username=request.user.username)
     customer_user = get_object_or_404(CustomerUser, user=user.id)
+    hardskill_form = HardSkillForm()
+    softskill_form = SoftSkillForm()
+    certification_form = CertificationForm(customer=customer_user.id)
+    professional_experience_form = ProfessionalExperienceForm(customer=customer_user.id)
+    academic_experience_form = AcademicExperienceForm()
+    relevant_project_form = RelevantProjectForm(customer=customer_user.id)
+    recomendation_form = RecomendationForm()
+    open_source_contribuition_form = OpenSourceContribuitionForm(customer=customer_user.id)
+    language_form = LanguageForm()
     
     if request.method == 'POST':
         submit_value = request.POST.get("submit_button")
+        print(submit_value)
 
         if submit_value == 'Hard Skill':
             hardskill_form = HardSkillForm(request.POST, request.FILES)  
@@ -53,6 +63,9 @@ def add_experiences(request):
 
                 messages.success(request, 'Professional Experience registred sucefuly.')
                 return redirect('add_experiences')
+            else:
+                print(professional_experience_form.errors)
+
             
         elif submit_value == 'Academic Experience':
             academic_experience_form = AcademicExperienceForm(request.POST, request.FILES)
@@ -131,6 +144,8 @@ def my_experiences(request):
     user_recommendations = Recommendation.objects.filter(customer=customer_user.id)
     user_open_source_contribuitions = OpenSourceContribuition.objects.filter(customer=customer_user.id)
     user_languages = Language.objects.filter(customer=customer_user.id)
+
+    is_empty = not (user_hard_skills and user_soft_skills and user_certifications and user_professional_experiences and user_academic_experiences and user_relevant_projects and user_recommendations and user_open_source_contribuitions and user_languages)
     
     return render(request, 'experiences/my_experiences.html', {
         'hard_skills' : user_hard_skills, 
@@ -142,6 +157,7 @@ def my_experiences(request):
         'recommendations' : user_recommendations,
         'open_source_contribuitions' : user_open_source_contribuitions,
         'languages' : user_languages,
+        'is_empty' : is_empty
     })
 
 

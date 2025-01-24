@@ -5,6 +5,10 @@
 {% include "partials/_messages.html" %}
 
 <div id="main_container">
+{% if is_empty %}
+<p>Please first add any experience.</p>
+<a href={% url "add_experiences" %} class="link_button">Add a experience</a>
+{% endif %}
 {% if hard_skills %}
     <table>
         <thead>
