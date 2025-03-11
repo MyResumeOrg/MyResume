@@ -144,7 +144,7 @@ class ProfessionalExperience(models.Model):
     start_date = models.DateField()
     end_date = models.DateField(blank= True, null=True)
 
-    def clean(self):
+    def clean(self): # Rever lógica e tratamento de erro no form e model
         if self.end_date and self.end_date > self.start_date:
             raise ValidationError('An end date cannot be greater than a start date.') 
 

@@ -70,7 +70,8 @@ header {
     transition: 300ms ease-in-out;
 }
 
-.log-button:hover {
+.log-button:hover,
+.link_button:hover {
     background-color: var(--primary-blue);
     box-shadow: 0 0 0 5px #3b83f65f;
     color: var(--primary-white);
@@ -102,8 +103,9 @@ header {
 
 #main_sections_content {
     display: flex;
-    width: 100%;
+    flex:1;
     justify-content: center;
+    align-items: center;
 }
 
 #sections_content {
@@ -496,6 +498,10 @@ form h1 {
     left: calc(130px * 8 + 2px);
 }
 
+.messageTermsOfUsageNeeded {
+    display: none;
+}
+
 /* terms of use */
 
 #terms_of_use_container{
@@ -712,3 +718,68 @@ form h1 {
     align-content: center;
     justify-content: center;
 }
+
+/* MyExperiences page */
+#main_container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+table {
+    width: 70%;
+    margin: 1rem 0;
+    border-collapse: collapse;
+    text-align: center; 
+    background-color: var(--secondary-gray);
+    border-radius: 1em;
+    box-shadow: 0 .5em 1.5em rgba(0, 0, 0, .1), 0 .125em .5em rgba(0, 0, 0, .15);
+}
+
+
+table caption {
+    font-size: larger;
+    padding-bottom: 0.5rem;
+}
+
+table th {
+    color: var(--primary-blue);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+
+table td, 
+table th {
+    padding: 5px 0; 
+    vertical-align: middle;
+}
+
+table button {
+    border: none; 
+    cursor: pointer; 
+    display: flex;
+    background: none;
+}
+
+.link_button{
+    font-family: var(--font-famaly2);
+    background-color: var(--primary-white);
+    color: var(--primary-blue);
+    border: none;
+    border-radius: 8px;
+    width: fit-content;
+    height: 35px;
+    transition: 300ms ease-in-out;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 1px 6px;
+}
+
+/* 
+table button:hover img{
+    fill: #ffdddd;
+} */
